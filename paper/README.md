@@ -21,14 +21,30 @@
         - BART-CNN (pretrained BART from huggingface without finetuning)
         - BART-PODCASTS (BART finetuned over the first 1024 tokens of the transcript)
 
-    - `A Two-Phase Approach for Abstractive Podcast Summarization` - Murro
-    - `AbstractivePodcastSummarizationUsingBARTwithLongformerAttention`- Murro
-    - `Automatic Summarization of Open-Domain Podcast Episodes` - Murro
-    - `cued_speech.P` - Murro
-    - `Spotify_at_TREC_2020_Genre-Aware_Abstractive_Podcast` - Boezio
-    - `Towards Abstractive Grounded Summarization of Podcast Transcripts` - Boezio
-    - `uog_msc.P` - Boezio
-    - `PEREZ_THESIS-2020` - Boezio
+- `overview_TREC_2020`: a summary of the results of the TREC 2020 competition
+    - Best models:
+    
+      |        Papers         |       Ranking       |
+      | :-------------------: | :-----------------: |
+      | ![](./img/papers.png) | ![](./img/rank.png) |
+    
+- `5_udel_wang_zheng_A Two-Phase Approach for Abstractive Podcast Summarization` - Murro
+
+- `3_hk_uu_AbstractivePodcastSummarizationUsingBARTwithLongformerAttention`- Murro
+
+- `2_UCF_Automatic Summarization of Open-Domain Podcast Episodes` - Murro
+
+- `1_cued_speech.P` - Murro
+
+- `Spotify_at_TREC_2020_Genre-Aware_Abstractive_Podcast` - Boezio
+
+- `Towards Abstractive Grounded Summarization of Podcast Transcripts` - Boezio
+
+- `uog_msc.P` - Boezio
+
+- `PEREZ_THESIS-2020` - Boezio
+
+
 
 
 ### Highlightings meaning
