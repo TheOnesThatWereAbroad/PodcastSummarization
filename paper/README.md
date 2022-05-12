@@ -7,7 +7,7 @@
     - Tokens that correspond to URLs, email addresses, @mentions, #hashtags, and those excessively long tokens (>25 characters) are directly removed from the summaries (Murro)
     - Remove sponsorships (regex or classifier)  (Murro)
     - need to have a maximum length of transcription of 1024 token. So use some sentence rank algorithm or just select the first 1024 tokens
-    - *Sentences rank* should select the most important sentences (TextRank, IDF, Hierarchical) (Boezio)
+    - *Sentences rank* should select the most important sentences (TextRank, IDF, Hierarchical) or also [Windowing Models](./papers_state-of-art-abstractive-summarization/deep_reinforced_model_abstr_summarization.pdf) seems promising (Boezio)
     - Concat **categories** (Boezio)
 - Training: (Murro)
     - BART/BART with Longformer attention 
