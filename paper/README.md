@@ -1,5 +1,21 @@
 # Notes about papers
 
+### TODO
+
+- Preprocessing:
+    - create *brass set*    (Boezio)
+    - Tokens that correspond to URLs, email addresses, @mentions, #hashtags, and those excessively long tokens (>25 characters) are directly removed from the summaries (Murro)
+    - Remove sponsorships (regex or classifier)  (Murro)
+    - need to have a maximum length of transcription of 1024 token. So use some sentence rank algorithm or just select the first 1024 tokens
+    - *Sentences rank* should select the most important sentences (TextRank, IDF, Hierarchical) (Boezio)
+    - Concat **categories** (Boezio)
+- Training: (Murro)
+    - BART/BART with Longformer attention 
+    - RL loss
+- Prediction:
+    - Ensemble
+
+
 ### Summary
 
 - `dataset_paper.pdf` describes some useful preprocessing steps and some models like BART used as a baseline by Spotify, so we have to perform better than that!
@@ -48,6 +64,7 @@
         - $\mathcal{L}_{r l}=(\operatorname{Reward}(\tilde{\mathbf{y}})-\operatorname{Reward}(\hat{\mathbf{y}})) \sum_{t} \log P\left(\hat{y}_{t} \mid \hat{\mathbf{y}}_{1: t-1}, \mathbf{x} ; \boldsymbol{\theta}\right)$ where Reward is ROUGE-L
     - the best is an *Ensemble of 9 BART models* (combine 3 random seeds × 3 checkpoints), each trained on filtered transcription (using hierarchical model) data + Lrl criterion (see on the paper the formula to combine predictions of ensemble models)
     - GitHub repository: [https://github.com/potsawee/podcast_trec2020](https://github.com/potsawee/podcast_trec2020)
+    
 - `Spotify_at_TREC_2020_Genre-Aware_Abstractive_Podcast` - Boezio
 
 - `Towards Abstractive Grounded Summarization of Podcast Transcripts` - Boezio
