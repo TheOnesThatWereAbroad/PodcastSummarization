@@ -48,7 +48,28 @@
 
 - `3_hk_uu_AbstractivePodcastSummarizationUsingBARTwithLongformerAttention`- Murro
 
-- `2_UCF_Automatic Summarization of Open-Domain Podcast Episodes` - Murro
+- `2_UCF_Automatic Summarization of Open-Domain Podcast Episodes` : identifying important segments from the transcripts to serve as input to BART
+    - Preproccesing:
+        - instead of rely on the **brass subset** (66,242 episodes) try to identify sentences that contain improper content and remove them from the descriptions
+            - compute a *salience score* for each sentence of the description by summing over word IDF scores
+            - remove sentences if their salience scores are lower than a threshold (σ=10)
+            - method results in 79,912 training examples
+        - need to have a maximum length of transcription of 1024 token (positional embedding matrix size of BART)
+        - use **segment-based extraction** (rather than sentence-based):
+            - a segment is corresponds to 30 seconds of audio
+            - take 33 segments from the beginning and 7 segments from the end of each transcript to be the candidate segments
+            - create a vector of 12 feature scores for a candidate segment (based on TF-IDF score)
+            - Each vector is fed to a feedforward and a softmax layer to predict if the segment is salient
+            - as target for the training of the classifier, a segment is labelled as positive if the score is greater than a threshold (τ=0.2) otherwise negative
+    - Fine-tuning BART-LARGE
+    - Summary Postprocessing:
+        - length_penalty p=2.0 to not penalize the generation of longer summaries
+        - min_length of a summary = 35, max_length = 250, beam size of K=4
+        - removing the content after “—”
+        - removing URLs
+        - removing brackets and the content inside it
+        - removing any trailing incomplete sentence if the summary is excessively long
+        - removing duplicate sentences that occur three times or more across different episodes
 
 - `1_cued_speech.P`: addictional preproccesing wrt the dataset paper and fine-tune the BART model on the Podcast data
     - Preproccesing:
