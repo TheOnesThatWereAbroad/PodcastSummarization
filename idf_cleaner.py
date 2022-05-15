@@ -43,7 +43,7 @@ def is_english(document):
     return dictionary_score > 0.3
 
 
-def clean_with_idf(X, y):
+def clean_with_idf(X, y, add_delimiters=False):
     idf_scores = compute_word_frequencies(y)
     to_delete = []
     avg_scores = []
@@ -62,7 +62,9 @@ def clean_with_idf(X, y):
         ]
         if not useful_sentences or not is_english(transcription):
             to_delete.append(i)
-        y[i] = "[start]" + " ".join(useful_sentences) + "[end]"
+        useful_sentences = " ".join(useful_sentences)
+        if add_delimiters:
+            y[i] = "[start]" + useful_sentences + "[end]"
     for element_to_delete in sorted(to_delete, reverse=True):
         X.pop(element_to_delete)
         y.pop(element_to_delete)
