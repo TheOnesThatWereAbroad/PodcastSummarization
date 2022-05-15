@@ -1,19 +1,21 @@
 # Notes about papers
 
-### TODO
+
+### Our idead
 
 - Preprocessing:
-    - create *brass set*    (Boezio)
-    - Tokens that correspond to URLs, email addresses, @mentions, #hashtags, and those excessively long tokens (>25 characters) are directly removed from the summaries (Murro)
-    - Remove sponsorships (regex or classifier)  (Murro)
-    - need to have a maximum length of transcription of 1024 token. So use some sentence rank algorithm or just select the first 1024 tokens
-    - *Sentences rank* should select the most important sentences (TextRank, IDF, Hierarchical) or also [Windowing Models](./papers_state-of-art-abstractive-summarization/deep_reinforced_model_abstr_summarization.pdf) seems promising (Boezio)
-    - Concat **categories** (Boezio)
-- Training: (Murro)
-    - BART/BART with Longformer attention 
-    - RL loss
-- Prediction:
-    - Ensemble
+    - start from *brass set* (boezio)
+    - tokens that correspond to URLs, email addresses, @mentions, #hashtags, and those excessively long tokens (>25 characters) are directly removed from the summaries (simmy) 
+    - Remove sponsorships (regex of IDF) (simmy)
+    - split transcription per chuck (using RoBERTa or something else) (split sentece using nltk) (murro)
+    - build a classifier for the salience of each chunk  (boezio)
+        - extract features using TF-IDF from chunk  (boezio)
+        - target is creates using BERT-score F1 (or ROUGE) (chunk is labelled as positive if the score is greater than a threshold (τ=0.2 was used for ROUGE, to understand for BERTscore), otherwise negative)
+        - vector is fed to a feedforward and a softmax layer to predict if the segment is salient (setting threshold to 0.5) (maybe Cat boost)
+    - obtain a list of salient chunks (chunks that are predicted as salient) (max 1024 token)  (murro)
+    - concat the chunks into a text (murro)
+    - BART model is used to generate the summary (murro)
+
 
 
 ### Summary
@@ -46,7 +48,7 @@
     
 - `5_udel_wang_zheng_A Two-Phase Approach for Abstractive Podcast Summarization` - Murro
 
-- `3_hk_uu_AbstractivePodcastSummarizationUsingBARTwithLongformerAttention`- Murro
+- `3_hk_uu_AbstractivePodcastSummarizationUsingBARTwithLongformerAttention`- extend  BART model by replacing the attention layers with attention mechanism used in the Longformer 
 
 - `2_UCF_Automatic Summarization of Open-Domain Podcast Episodes` : identifying important segments from the transcripts to serve as input to BART
     - Preproccesing:
