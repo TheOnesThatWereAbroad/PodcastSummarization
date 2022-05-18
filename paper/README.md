@@ -13,6 +13,7 @@
         - target is creates using BERT-score F1 (or ROUGE) (chunk is labelled as positive if the score is greater than a threshold (τ=0.2 was used for ROUGE, to understand for BERTscore), otherwise negative)
         - vector is fed to a feedforward and a softmax layer to predict if the segment is salient (setting threshold to 0.5) (maybe Cat boost)
     - obtain a list of salient chunks (chunks that are predicted as salient) (max 1024 token)  (murro)
+    - add category-aware token (murro)
     - concat the chunks into a text (murro)
     - BART model is used to generate the summary (murro)
 
