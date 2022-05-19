@@ -2,6 +2,7 @@ import re
 import numpy as np
 import pandas as pd
 import regex as re
+import pysbd
 from nltk.tokenize import word_tokenize, sent_tokenize
 from collections import Counter
 from nltk.corpus import words
@@ -10,6 +11,7 @@ links_or_sponsors_re = re.compile(
     r"(http|https|@|[pP]atreon|[eE]mail|[dD]onate|[iI]nstagram|[fF]acebook|[tT]witter|[dD]iscord|[fF]ollow|www|\.com|#|\*|[sS]potify)"
 )
 wordset = set(words.words())
+segmenter = pysbd.Segmenter(language="en", clean=False)
 
 
 def compute_word_frequencies(transcriptions):
@@ -48,7 +50,7 @@ def clean_with_idf(X, y, add_delimiters=False):
     to_delete = []
     avg_scores = []
     for i, transcription in enumerate(y):
-        sentences = sent_tokenize(transcription)
+        sentences = segmenter.segment(transcription)
         sentence_scores = [
             idf_score_sentence(sentence, idf_scores) for sentence in sentences
         ]
