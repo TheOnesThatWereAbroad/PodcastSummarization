@@ -1,6 +1,9 @@
 # dataset
-podcasts-no-audio-13GB/
+podcasts-no-audio-13GB/*
 podcasts-no-audio-13GB.zip
+
+#Except for brass-set
+!podcasts-no-audio-13GB/brass_set.tsv 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
