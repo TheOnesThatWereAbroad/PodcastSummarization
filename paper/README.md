@@ -47,7 +47,11 @@
       | :-------------------: | :-----------------: |
       | ![](./img/papers.png) | ![](./img/rank.png) |
     
-- `5_udel_wang_zheng_A Two-Phase Approach for Abstractive Podcast Summarization` - Murro
+- `5_udel_wang_zheng_A Two-Phase Approach for Abstractive Podcast Summarization` - selects the important sentences from the transcript in the first phase and uses the encoder-decoder network to generate the abstractive summary based on the selection
+    - Additional data preprocessing on top of the Brass Set as follows:
+        - Remove episodes with profanity language in the episode or show descriptions as [9].
+        - Remove episodes with non-English descriptions. 
+        - Remove episodes whose description is less than 10 tokens (They perform some data preprocessing for episode description, including using some rule-based methods to remove the social media link and sponsorship)
 
 - `3_hk_uu_AbstractivePodcastSummarizationUsingBARTwithLongformerAttention`- extend  BART model by replacing the attention layers with attention mechanism used in the Longformer 
 
@@ -92,6 +96,7 @@
 - `Spotify_at_TREC_2020_Genre-Aware_Abstractive_Podcast` - Boezio
 
 - `Towards Abstractive Grounded Summarization of Podcast Transcripts` - Boezio
+    - [https://github.com/tencent-ailab/GrndPodcastSum](https://github.com/tencent-ailab/GrndPodcastSum)
 
 - `uog_msc.P` - Boezio
 
