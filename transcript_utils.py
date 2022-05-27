@@ -136,28 +136,22 @@ def semantic_segmentation(text, model, lower_chunk_size=300, upper_chunk_size=20
     return chuncks
 
 
-class FeatureExtractor:
-    def __init__(self):
-        """
-        Class used to extract features from the transcript. 
-        From each chunk an encoding of each sentence is extracted using a pretrained RoBerta Transformer to obtain a dense encoding. 
-        The encoding of the chunk is the mean of the encoding of its sentences.
-        """
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')
+def extract_features(text, model):
+    """
+    Extract features from text using the sentence transformer model which produce a vector of 384 dimensions for each sentence
+    From each chunk an encoding of each sentence is extracted using a pretrained RoBerta Transformer to obtain a dense encoding. 
+    The encoding of the chunk is the mean of the encoding of its sentences.
+    
+    Parameters:
+        - text: string representing a document
+        - model: sentence transformer model
+    Returns:
+        - extracted features
+    """
+    embeddings = []
+    for sentence in text:
+        embeddings.append(model.encode(sentence))
 
-    def extract_features(self, text):
-        """
-        Extract features from text using the sentence transformer model which produce a vector of 384 dimensions for each sentence
+    features = np.mean(embeddings, axis=0)
 
-        Parameters:
-            - text: string representing a document
-        Returns:
-            - extracted features
-        """
-        embeddings = []
-        for sentence in text:
-          embeddings.append(self.model.encode(sentence))
-
-        features = np.mean(embeddings, axis=0)
-
-        return features
+    return features
