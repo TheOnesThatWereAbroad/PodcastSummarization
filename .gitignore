@@ -4,6 +4,7 @@ podcasts-no-audio-13GB.zip
 
 #Except for brass-set
 !podcasts-no-audio-13GB/brass_set.tsv 
+!podcasts-no-audio-13GB/gold_set_cleaned.tsv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
