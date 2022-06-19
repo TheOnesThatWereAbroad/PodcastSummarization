@@ -6,6 +6,8 @@ podcasts-no-audio-13GB.zip
 !podcasts-no-audio-13GB/brass_set.tsv 
 !podcasts-no-audio-13GB/gold_set_cleaned.tsv
 !podcasts-no-audio-13GB/chunk_classification_dataset.csv
+!podcasts-no-audio-13GB/filtered_set.tsv
+!podcasts-no-audio-13GB/predictions_ft.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

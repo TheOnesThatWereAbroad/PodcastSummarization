@@ -7,7 +7,7 @@ import pysbd
 from sentence_transformers import SentenceTransformer, util
 
 
-def get_path(episode, dataset_path):
+def get_path(episode, transcript_path):
     """
     Get the path of the episode json file
     
@@ -15,6 +15,8 @@ def get_path(episode, dataset_path):
     ----------
     episode : pandas.Series
         A row from the metadata file
+    transcript_path : str
+        The absolute path of the folder containing the transcripts
 
     Returns
     -------
@@ -27,13 +29,12 @@ def get_path(episode, dataset_path):
     dir_1, dir_2 = re.match(r'show_(\d)(\w).*', show_filename).groups()
 
     # check if the transcript file in all the derived subfolders exist
-    transcipt_path = os.path.join(dataset_path, "spotify-podcasts-2020",
-                                "podcasts-transcripts", dir_1, dir_2,
+    transcipt_path = os.path.join(transcript_path, dir_1, dir_2,
                                 show_filename, episode_filename)
     return transcipt_path
 
 
-def get_transcription(episode, dataset_path):
+def get_transcription(episode, dataset_path, test_set=False):
     """
     Extract the transcript from the episode json file
     
@@ -41,13 +42,22 @@ def get_transcription(episode, dataset_path):
     ----------
     episode : pandas.Series
         A row from the metadata file
+    dataset_path : str
+        The absolute path of the dataset    
+    test_set : bool
     
     Returns
     -------
     transcript : str
         The transcript of the episode
     """
-    with open(get_path(episode, dataset_path), 'r') as f:
+
+    if test_set:
+        transcript_path = os.path.join(dataset_path, "spotify-podcasts-2020","podcasts-transcripts-summarization-testset")
+    else:
+        transcript_path = os.path.join(dataset_path, "spotify-podcasts-2020", "podcasts-transcripts")
+
+    with open(get_path(episode, transcript_path), 'r') as f:
         episode_json = json.load(f)
         # seems that the last result in each trastcript is a repetition of the first one, so we ignore it
         transcripts = [
