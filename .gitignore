@@ -8,6 +8,7 @@ podcasts-no-audio-13GB.zip
 !podcasts-no-audio-13GB/chunk_classification_dataset.csv
 !podcasts-no-audio-13GB/filtered_set.tsv
 !podcasts-no-audio-13GB/predictions_ft.csv
+!podcasts-no-audio-13GB/results_bertscore.pkl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
