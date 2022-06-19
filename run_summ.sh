@@ -1,1 +1,0 @@
-python run_summarization.py --model_name_or_path facebook/bart-large-cnn --train_file test_bart.csv --text_column transcript --summary_column episode_description --max_source_length 1024 --max_target_length 192 --output_dir /tmp/tst-summarization  --per_device_train_batch_size 4 --num_train_epochs 3 --do_train

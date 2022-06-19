@@ -1,27 +1,6 @@
 # Notes about papers
 
-
-### Our idead
-
-- Preprocessing:
-    - start from *brass set* (boezio)
-    - tokens that correspond to URLs, email addresses, @mentions, #hashtags, and those excessively long tokens (>25 characters) are directly removed from the summaries (simmy) 
-    - Remove sponsorships (regex of IDF) (simmy)
-    - split transcription per chuck (using RoBERTa or something else) (split sentece using nltk) (murro)
-    - build a classifier for the salience of each chunk  (boezio)
-        - extract features using TF-IDF from chunk  (boezio)
-        - target is creates using BERT-score F1 (or ROUGE) (chunk is labelled as positive if the score is greater than a threshold (τ=0.2 was used for ROUGE, to understand for BERTscore), otherwise negative)
-        - vector is fed to a feedforward and a softmax layer to predict if the segment is salient (setting threshold to 0.5) (maybe Cat boost)
-    - obtain a list of salient chunks (chunks that are predicted as salient) (max 1024 token)  (murro)
-    - add category-aware token (murro)
-    - concat the chunks into a text (murro)
-    - BART model is used to generate the summary (murro)
-
-
-
-### Summary
-
-- `dataset_paper.pdf` describes some useful preprocessing steps and some models like BART used as a baseline by Spotify, so we have to perform better than that!
+- [`dataset_paper.pdf`](./dataset_paper.pdf) describes some useful preprocessing steps and some models like BART used as a baseline by Spotify, so we have to perform better than that!
 
     - The preprocessing explained removes
 
@@ -40,22 +19,26 @@
         - BART-CNN (pretrained BART from huggingface without finetuning)
         - BART-PODCASTS (BART finetuned over the first 1024 tokens of the transcript)
 
-- `overview_TREC_2020`: a summary of the results of the TREC 2020 competition
+- [`overview_TREC_2020`](./overview_TREC_2020.pdf): a summary of the results of the TREC 2020 competition
+    
     - Best models:
     
       |        Papers         |       Ranking       |
       | :-------------------: | :-----------------: |
       | ![](./img/papers.png) | ![](./img/rank.png) |
     
-- `5_udel_wang_zheng_A Two-Phase Approach for Abstractive Podcast Summarization` - selects the important sentences from the transcript in the first phase and uses the encoder-decoder network to generate the abstractive summary based on the selection
+- [`5_udel_wang_zheng_A Two-Phase Approach for Abstractive Podcast Summarization`](./papers_partecipants_TREC_2020/5_udel_wang_zheng_A Two-Phase Approach for Abstractive Podcast Summarization.pdf) - selects the important sentences from the transcript in the first phase and uses the encoder-decoder network to generate the abstractive summary based on the selection
+  
     - Additional data preprocessing on top of the Brass Set as follows:
-        - Remove episodes with profanity language in the episode or show descriptions as [9].
+        - Remove episodes with profanity language in the episode or show descriptions.
         - Remove episodes with non-English descriptions. 
-        - Remove episodes whose description is less than 10 tokens (They perform some data preprocessing for episode description, including using some rule-based methods to remove the social media link and sponsorship)
+        - Remove episodes whose description is less than 10 tokens 
+        - They perform some data preprocessing for episode description, including using some rule-based methods to remove the social media link and sponsorship
+    
+- [`3_hk_uu_AbstractivePodcastSummarizationUsingBARTwithLongformerAttention`](./papers_partecipants_TREC_2020/3_hk uu_AbstractivePodcastSummarizationUsingBARTwithLongformerAttention.pdf)- extend  BART model by replacing the attention layers with attention mechanism used in the Longformer 
 
-- `3_hk_uu_AbstractivePodcastSummarizationUsingBARTwithLongformerAttention`- extend  BART model by replacing the attention layers with attention mechanism used in the Longformer 
-
-- `2_UCF_Automatic Summarization of Open-Domain Podcast Episodes` : identifying important segments from the transcripts to serve as input to BART
+- [`2_UCF_Automatic Summarization of Open-Domain Podcast Episodes`](./papers_partecipants_TREC_2020/2_UCF_Automatic Summarization of Open-Domain Podcast Episodes.pdf) : identifying important segments from the transcripts to serve as input to BART
+    
     - Preproccesing:
         - instead of rely on the **brass subset** (66,242 episodes) try to identify sentences that contain improper content and remove them from the descriptions
             - compute a *salience score* for each sentence of the description by summing over word IDF scores
@@ -77,8 +60,9 @@
         - removing brackets and the content inside it
         - removing any trailing incomplete sentence if the summary is excessively long
         - removing duplicate sentences that occur three times or more across different episodes
-
-- `1_cued_speech.P`: addictional preproccesing wrt the dataset paper and fine-tune the BART model on the Podcast data
+    
+- [`1_cued_speech_UCambridge`](./papers_partecipants_TREC_2020/1_cued_speech_UCambridge.pdf): addictional preproccesing wrt the dataset paper and fine-tune the BART model on the Podcast data
+    
     - Preproccesing:
         - Start from the **brass subset** (66,242 episodes)
         - filtered out episodes with descriptions shorter than 5 tokens, and process creator-provided descriptions by removing URL links and @name
@@ -93,14 +77,9 @@
     - the best is an *Ensemble of 9 BART models* (combine 3 random seeds × 3 checkpoints), each trained on filtered transcription (using hierarchical model) data + Lrl criterion (see on the paper the formula to combine predictions of ensemble models)
     - GitHub repository: [https://github.com/potsawee/podcast_trec2020](https://github.com/potsawee/podcast_trec2020)
     
-- `Spotify_at_TREC_2020_Genre-Aware_Abstractive_Podcast` - Boezio
-
-- `Towards Abstractive Grounded Summarization of Podcast Transcripts` - Boezio
-    - [https://github.com/tencent-ailab/GrndPodcastSum](https://github.com/tencent-ailab/GrndPodcastSum)
-
-- `uog_msc.P` - Boezio
-
-- `PEREZ_THESIS-2020` - Boezio
+- `Towards Abstractive Grounded Summarization of Podcast Transcripts` 
+  
+    - GitHub repository: [https://github.com/tencent-ailab/GrndPodcastSum](https://github.com/tencent-ailab/GrndPodcastSum)
 
 
 
