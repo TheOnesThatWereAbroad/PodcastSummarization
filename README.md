@@ -18,7 +18,7 @@ Link to the dataset: [drive](https://liveunibo-my.sharepoint.com/:f:/g/personal/
 In our solution an extractive module is developed to select salient chunks from the transcript, which serve as the input to an abstractive summarizer. The latter utilizes a BART model, that employs an encoder-decoder architecture.
 An extensive pre-processing on the creator-provided descriptions is performed selecting a subset of the corpus that is suitable for the training supervised model.
 The figure below summarizes the steps involved by our method.
-In order to have a better understanging of our proposed solution, take a look to the [notebook](abstractive_podcast_summarization.ipynb) and the [report](./report.pdf).
+In order to have a better understanding of our proposed solution, take a look to the [notebook](abstractive_podcast_summarization.ipynb) and the [report](./report.pdf).
 
 ![](./assets/img/diagram.png)
 
