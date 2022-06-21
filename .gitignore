@@ -5,8 +5,11 @@ podcasts-no-audio-13GB.zip
 #Exceptions
 !podcasts-no-audio-13GB/gold_set_cleaned.tsv
 !podcasts-no-audio-13GB/chunk_classification_dataset.csv
+!podcasts-no-audio-13GB/filtered_testset.csv
 !podcasts-no-audio-13GB/predictions_ft.csv
 !podcasts-no-audio-13GB/predictions_pt.csv
+!podcasts-no-audio-13GB/150gold.tsv
+!podcasts-no-audio-13GB/podcast-dataset-description-paper.pdf
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
