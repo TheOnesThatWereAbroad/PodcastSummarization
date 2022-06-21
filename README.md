@@ -43,25 +43,19 @@ python compute_summary.py transcript_example.txt
 ## Results
 BERTScore has been chosen as semantic metric to evaluate the results on the test set, as shown by the table below:
 
-bart-large-cnn 0.8103 0.8317 0.7941 0.8121 0.8018 0.8214
-bart-large-finetuned 0.8401 0.8631 0.8093 0.8279 0.8240 0.8447
-Table 4.2: Comparison of models performance with BERTScore
-9
-
-
-|           Model        | Precision  | Precision  | Precision  |
+|           Model        | Precision  |   Recall   |  F1 Score  |
 |:----------------------:|:----------:|:----------:|:----------:|
 |    bart-large-cnn      |   0.8103   |   0.7941   |   0.8018   |
 |  bart-large-finetuned  |   0.8401   |   0.8093   |   0.8240   |
 
 
-This is an example of the prediction made by finetuned model:
+This is an example of the prediction made by the fine-tuned model:
 ```
 CREATOR-PROVIDED DESCRIPTION:  
     In this episode, I talk about how we have to give up perfection in order to grow in our relationship with God.
     It s not about perfection, it s about growing as we walk on the path to perfection.
 GENERATED SUMMARY:
-	In this episode I talk about the idea of Perfection and how it has the ability to steal all of our joy in this life — if we let it.
+    In this episode I talk about the idea of Perfection and how it has the ability to steal all of our joy in this life — if we let it.
     I go into detail about a revelation I had after walking away from my coaching career and how badly I need Jesus.
 ```
 
