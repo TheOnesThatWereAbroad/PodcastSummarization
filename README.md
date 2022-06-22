@@ -1,4 +1,4 @@
-# 📻 Abstractive Podcast Summarization 📄
+# 🎙️ Abstractive Podcast Summarization 📄
 
 This repository contains a final project realized for the *Natural Language Processing* course of the [Master's degree in Artificial Intelligence](https://corsi.unibo.it/2cycle/artificial-intelligence), University of Bologna.
 
@@ -12,7 +12,7 @@ The [Spotify Podcast Dataset](https://arxiv.org/abs/2004.04270) is the first lar
 
 While no ground truth summaries are provided in the dataset, the episode descriptions written by the podcast creators serve as proxies for summaries, and are used for training supervised models.
 
-Link to the dataset: [drive](https://liveunibo-my.sharepoint.com/:f:/g/personal/giuseppe_murro_studio_unibo_it/Eowox91DqfNDsoN3OfU1XfUB053DLhVCMn44CTsTJ-Okqg?e=jiReVZ)
+More info about how to have access to the dataset on [podcasts-no-audio-13GB folder](./podcasts-no-audio-13GB/README.md).
 
 ## Solution proposed
 In our solution an extractive module is developed to select salient chunks from the transcript, which serve as the input to an abstractive summarizer. The latter utilizes a BART model, that employs an encoder-decoder architecture.

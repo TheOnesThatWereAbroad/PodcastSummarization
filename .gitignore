@@ -10,6 +10,7 @@ podcasts-no-audio-13GB.zip
 !podcasts-no-audio-13GB/predictions_pt.csv
 !podcasts-no-audio-13GB/150gold.tsv
 !podcasts-no-audio-13GB/podcast-dataset-description-paper.pdf
+!podcasts-no-audio-13GB/README.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
