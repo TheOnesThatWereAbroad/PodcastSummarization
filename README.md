@@ -41,7 +41,7 @@ python compute_summary.py transcript_example.txt
 ```
 
 ## Results
-BERTScore has been chosen as semantic metric to evaluate the results on the test set, as shown by the table below:
+[BERTScore](https://github.com/Tiiiger/bert_score) has been chosen as semantic metric to evaluate the results on the test set, as shown by the table below our model outperform the `bart-large-cnn` baseline:
 
 |           Model        | Precision  |   Recall   |  F1 Score  |
 |:----------------------:|:----------:|:----------:|:----------:|
